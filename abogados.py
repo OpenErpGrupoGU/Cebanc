@@ -23,47 +23,49 @@
 from osv import osv
 from osv import fields
 
-class equipos_mg(osv.osv):
+class visitas_ab(osv.osv):
 
-    _name = 'equipos.mg'
-    _description = 'equipos.mg'
-    _rec_name='nombre'
+    _name = 'visitas.ab'
+    _description = 'visitas.ab'
+    _rec_name='codigo'
     _columns = {
-            'nombre':fields.char('Modelo', size = 20, required = True, readonly = False),
-            'pvp':fields.float('PVP sin IVA', digits = (6,2), required = True, readonly = False),
-            'cpu':fields.char('Procesador', size = 40, required = True, readonly = False),
-            'ram':fields.selection([
-                ('0.5','512 MB'),
-                ('1','1 GB'),
-                ('2','2 GB'),
-                ('4','4 GB'),
-                ('6','6 GB'),
-                ('8','8 GB'),
-                 ],'Memoria RAM', select = False, readonly = False),
-            'so':fields.selection([
-                ('W7','Windows 7'),
-                ('W8','Windows 8'),
-                ('W7/8','Windows 7/8'),
-                ('A4','Android 4'),
-                ('A5','Android 5'),
-                 ],'Sistema Operativo', select = False),
-            'hd':fields.selection([
-                ('8','8 GB'),
-                ('16','16 GB'),
-                ('32','32 GB'),
-                ('64','64 GB'),
-                ('64','64 GB SSD'),
-                ('128','128 GB'),
-                ('500','500 GB'),
-                ('1000','1000 GB'),
-                 ],'Disco Duro', select = False, readonly = False),
-            'wc':fields.boolean('webcam'),
-            'tipo':fields.selection([
-                ('1','Portatil'),
-                ('2','Ultrabook'),
-                ('3','Tablet'),
-                 ],'Tipo Dispositivo', select = False, readonly = False),
-            'venta':fields.many2many('ventas.mg', 'ven_equ', 'id_equipo', 'id_venta', 'Venta'),
-            
+            'codigo':fields.char('Código', size = 20, required = True, readonly = False),
+            'fecha_hora':fields.datetime('Fecha/Hora', required = True, readonly = False),
+            'estado':fields.selection([
+                ('1','Programada'),
+                ('2','Realizada'),
+                ('3','Anulada'),
+                 ],'Estado', select = False, readonly = False),
+            'duracion':fields.char('Duración', size = 30, required = True, readonly = False),
+            'caso':fields.many2one('casos.ab','Caso'),
+            'descripcion':fields.char('Descripción', size = 40, required = True, readonly = False),
+            'situacion':fields.char('Situación', size = 60, required = True, readonly = False),
+        
         }
-equipos_mg()
+visitas_ab()
+
+class casos_ab(osv.osv):
+
+    _name = 'casos.ab'
+    _description = 'casos.ab'
+    _rec_name='codigo'
+    _columns = {
+            'codigo':fields.char('Código', size = 20, required = True, readonly = False),
+            'Cliente':fields.many2one('clientes.ab','Cliente'),
+            'asunto':fields.char('Asunto', size = 40, required = True, readonly = False),
+             
+        }
+casos_ab()
+
+class clientes_ab(osv.osv):
+
+    _name = 'clientes.ab'
+    _description = 'clientes.ab'
+    _rec_name='dni'
+    _columns = {
+           # 'codigo':fields.char('Código', size = 20, required = True, readonly = False),
+           # 'Cliente':fields.many2one('clientes.ab','Cliente'),
+           # 'asunto':fields.char('Asunto', size = 40, required = True, readonly = False),
+             
+        }
+clientes_ab()
