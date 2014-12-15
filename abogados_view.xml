@@ -6,7 +6,7 @@
 		<menuitem id="abogados_menu" name="abogados" />
 
 		<!-- Vista Tree -->
-		<record model="ir.ui.view" id="abogados_tree_view">
+		<record model="ir.ui.view" id="visitas_tree_view">
 			<field name="name">visitas.ab.tree</field>
 			<field name="model">visitas.ab</field>
 			<field name="type">tree</field>
@@ -25,7 +25,7 @@
 		</record>
 
 		<!-- Vista Form -->
-		<record model="ir.ui.view" id="abogados_form_view">
+		<record model="ir.ui.view" id="visitas_form_view">
 			<field name="name">visitas.ab.form</field>
 			<field name="model">visitas.ab</field>
 			<field name="type">form</field>
@@ -43,7 +43,7 @@
 		</record>
 
 		<!-- Diseño de un action - ctrl + space: view_action -->
-		<record model="ir.actions.act_window" id="action_abogados_tree_view">
+		<record model="ir.actions.act_window" id="action_visitas_tree_view">
 			<field name="name">visitas.ab</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">visitas.ab</field>
@@ -54,7 +54,7 @@
 
 		<!-- Vista Search -->
 
-		<record id="abogados_search_view" model="ir.ui.view">
+		<record id="visitas_search_view" model="ir.ui.view">
 			<field name="name">visitas.ab.search</field>
 			<field name="model">visitas.ab</field>
 			<field name="type">search</field>
@@ -78,8 +78,117 @@
 		</record>
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="abogados_submenu_menu" name="Visitas" parent="abogados_menu"
-			action="action_abogados_tree_view" />
+		<menuitem id="visitas_submenu_menu" name="Visitas" parent="visitas_menu"
+			action="action_visitas_tree_view" />
+			
+		<!-- Vista Tree casos -->
+		<record model="ir.ui.view" id="casos_tree_view">
+			<field name="name">casos.ab.tree</field>
+			<field name="model">casos.ab</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Casos">
+					<field name="codigo" />
+					<field name="cliente" />
+					<field name="asunto" />
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="visitas_form_view">
+			<field name="name">casos.ab.form</field>
+			<field name="model">casos.ab</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Un nuevo caso">
+					<field name="codigo" />
+					<field name="cliente" />
+					<field name="asunto" />
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_casos_tree_view">
+			<field name="name">casos.ab</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">casos.ab</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="casos_tree_view" />
+		</record>
+
+		<!-- Vista Search -->
+
+		<record id="casos_search_view" model="ir.ui.view">
+			<field name="name">casos.ab.search</field>
+			<field name="model">casos.ab</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Cliente">
+					<field name="cliente"></field>
+				</search>
+			</field>
+		</record>
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="casos_submenu_menu" name="Casos" parent="casos_menu"
+			action="action_casos_tree_view" />
+			
+			
+			<!-- Vista Tree clientes -->
+		<record model="ir.ui.view" id="clientes_tree_view">
+			<field name="name">clientes.ab.tree</field>
+			<field name="model">clientes.ab</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Clientes">
+					<field name="dni" />
+					<field name="nombre" />
+					<field name="apellidos" />
+					<field name="direccion" />
+					<field name="telefono" />
+					<field name="casos" />
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="clientes_form_view">
+			<field name="name">clientes.ab.form</field>
+			<field name="model">clientes.ab</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Un nuevo caso">
+					<field name="nombre" />
+					<field name="apellidos" />
+					<field name="direccion" />
+					<field name="telefono" />
+					<field name="casos" />
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_clientes_tree_view">
+			<field name="name">clientes.ab</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">clientes.ab</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="clientes_tree_view" />
+		</record>
+
+		
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="clientes_submenu_menu" name="Clientes" parent="clientes_menu"
+			action="action_clientes_tree_view" />
 
 	</data>
 
