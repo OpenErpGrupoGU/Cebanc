@@ -3,89 +3,83 @@
 
 	<data>
 		<!-- Menú principal de managing -->
-		<menuitem id="managing_menu" name="managing" />
+		<menuitem id="abogados_menu" name="abogados" />
 
 		<!-- Vista Tree -->
-		<record model="ir.ui.view" id="managing_tree_view">
-			<field name="name">equipos.mg.tree</field>
-			<field name="model">equipos.mg</field>
+		<record model="ir.ui.view" id="abogados_tree_view">
+			<field name="name">visitas.ab.tree</field>
+			<field name="model">visitas.ab</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Equipos a la venta">
-					<field name="nombre" />
-					<field name="pvp" />
-					<field name="cpu" />
-					<field name="ram" />
-					<field name="hd" />
-					<field name="so" />
-					<field name="wc" />
-					<field name="tipo" />
-					<field name="venta" />
+				<tree string="Visitas">
+					<field name="codigo" />
+					<field name="fecha_hora" />
+					<field name="estado" />
+					<field name="duracion" />
+					<field name="caso" />
+					<field name="descripcion" />
+					<field name="situacion" />
+
 				</tree>
 			</field>
 		</record>
 
 		<!-- Vista Form -->
-		<record model="ir.ui.view" id="managing_form_view">
-			<field name="name">equipos.mg.form</field>
-			<field name="model">equipos.mg</field>
+		<record model="ir.ui.view" id="abogados_form_view">
+			<field name="name">visitas.ab.form</field>
+			<field name="model">visitas.ab</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Un equipo a la venta">
-					<field name="nombre" colspan="4" />
-					<field name="pvp" />
-					<field name="cpu" />
-					<!-- He puesto el grupo en comentario porque queda feo -->
-					<!--<group col="8" colspan="4"> -->
-					<field name="ram" />
-					<field name="hd" />
-					<field name="so" />
-					<field name="tipo" />
-					<!--</group> -->
-					<field name="wc" />
-					<field colspan="4" name="venta" />
+				<form string="Una nueva visita">
+					<field name="codigo"/>
+					<field name="fecha_hora" />
+					<field name="estado" />
+					<field name="caso" />
+					<field name="duracion" />
+					<field name="descripcion" />
+					<field name="situacion" />
 				</form>
 			</field>
 		</record>
 
 		<!-- Diseño de un action - ctrl + space: view_action -->
-		<record model="ir.actions.act_window" id="action_managing_tree_view">
-			<field name="name">equipos.mg</field>
+		<record model="ir.actions.act_window" id="action_abogados_tree_view">
+			<field name="name">visitas.ab</field>
 			<field name="type">ir.actions.act_window</field>
-			<field name="res_model">equipos.mg</field>
+			<field name="res_model">visitas.ab</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="view_id" ref="managing_tree_view" />
+			<field name="view_id" ref="abogados_tree_view" />
 		</record>
 
 		<!-- Vista Search -->
 
-		<record id="managing_search_view" model="ir.ui.view">
-			<field name="name">equipos.mg.search</field>
-			<field name="model">equipos.mg</field>
+		<record id="abogados_search_view" model="ir.ui.view">
+			<field name="name">visitas.ab.search</field>
+			<field name="model">visitas.ab</field>
 			<field name="type">search</field>
 			<field name="arch" type="xml">
-				<search string="Equipos">
-					<filter string="Portatil" name="filter_portatil" domain="[('tipo','=','1')]"
+				<search string="Estado">
+					<filter string="Programadas" name="filter_programada" domain="[('estado','=','1')]"
 						help="Open" />
-					<filter string="Ultrabook" name="filter_ultrabook" domain="[('tipo','!=','2')]"
+					<filter string="Realizadas" name="filter_realizada" domain="[('estado','!=','2')]"
 						help="Open" />
-					<filter string="Tablet" name="filter_tablet" domain="[('tipo','!=','3')]"
+					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
 						help="Open" />
 
-					<group expand="0" string="Agrupado Por...">
+					<!-- <group expand="0" string="Agrupado Por...">
 						<filter string="Sistema Operativo" domain="[]"
 							context="{'group_by':'so'}" />
 						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
 						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
-					</group>
+					</group>-->
 				</search>
 			</field>
 		</record>
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="managing_submenu_menu" name="Equipos" parent="managing_menu"
-			action="action_managing_tree_view" />
+		<menuitem id="abogados_submenu_menu" name="Visitas" parent="abogados_menu"
+			action="action_abogados_tree_view" />
 
 	</data>
 
