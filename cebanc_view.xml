@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+
+	<data>
+		<!-- Menú principal de managing -->
+		<menuitem id="abogados_menu" name="abogados" />
+
+		<!-- Vista Tree -->
+		<record model="ir.ui.view" id="visitas_tree_view">
+			<field name="name">visitas.ab.tree</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Visitas">
+					<field name="codigo" />
+					<field name="fecha_hora" />
+					<field name="estado" />
+					<field name="duracion" />
+					<field name="caso" />
+					<field name="descripcion" />
+					<field name="situacion" />
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="visitas_form_view">
+			<field name="name">visitas.ab.form</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Una nueva visita">
+					<field name="codigo"/>
+					<field name="fecha_hora" />
+					<field name="estado" />
+					<field name="caso" />
+					<field name="duracion" />
+					<field name="descripcion" />
+					<field name="situacion" />
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_visitas_tree_view">
+			<field name="name">visitas.ab</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">visitas.ab</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="visitas_tree_view" />
+		</record>
+
+		<!-- Vista Search -->
+
+		<record id="visitas_search_view" model="ir.ui.view">
+			<field name="name">visitas.ab.search</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Programadas" name="filter_programada" domain="[('estado','=','1')]"
+						help="Open" />
+					<filter string="Realizadas" name="filter_realizada" domain="[('estado','!=','2')]"
+						help="Open" />
+					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
+						help="Open" />
+
+					<!-- <group expand="0" string="Agrupado Por...">
+						<filter string="Sistema Operativo" domain="[]"
+							context="{'group_by':'so'}" />
+						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
+						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
+					</group>-->
+				</search>
+			</field>
+		</record>
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="visitas_submenu_menu" name="Visitas" parent="abogados_menu"
+			action="action_visitas_tree_view" />
+			
+	
+	</data>
+
+</openerp>

@@ -22,16 +22,16 @@
 ##############################################################################
 
 {
-    "name": "abogados",
+    "name": "cebanc",
     "version": "1.0",
     "depends": ["base"],
     "author": "Gorriti&UEsteibar",
     "category": "negocios",
     "description": """
-    Abogados
+    Cebanc
     """,
     "init_xml": [],
-    'update_xml': ["abogados_view.xml"],
+    'update_xml': ["cebanc_view.xml"],
     'demo_xml': [],
     'installable': True,
     'active': False,
