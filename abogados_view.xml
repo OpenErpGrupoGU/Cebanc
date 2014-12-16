@@ -191,5 +191,56 @@
 			action="action_clientes_tree_view" />
 
 	</data>
+	
+	<!-- Vista Tree clientes -->
+		<record model="ir.ui.view" id="gastos_tree_view">
+			<field name="name">gastos.ab.tree</field>
+			<field name="model">gastos.ab</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Gastos">
+					<field name="fecha" />
+					<field name="caso" />
+					<field name="desc_tramite" />
+					<field name="desc_gastos" />
+					<field name="importe" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="gastos_form_view">
+			<field name="name">gastos.ab.form</field>
+			<field name="model">gastos.ab</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Un nuevo gasto">
+					<field name="fecha" />
+					<field name="caso" />
+					<field name="desc_tramite" />
+					<field name="desc_gastos" />
+					<field name="importe" />
+
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_gastos_tree_view">
+			<field name="name">gastos.ab</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">gastos.ab</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="gastos_tree_view" />
+		</record>
+
+		
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="clientes_submenu_menu" name="Gastos" parent="gastos_menu"
+			action="action_gastos_tree_view" />
+
+	</data>
 
 </openerp>
