@@ -49,7 +49,7 @@
 			<field name="res_model">visitas.ab</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="view_id" ref="abogados_tree_view" />
+			<field name="view_id" ref="visitas_tree_view" />
 		</record>
 
 		<!-- Vista Search -->
@@ -78,7 +78,7 @@
 		</record>
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="visitas_submenu_menu" name="Visitas" parent="visitas_menu"
+		<menuitem id="visitas_submenu_menu" name="Visitas" parent="abogados_menu"
 			action="action_visitas_tree_view" />
 			
 		<!-- Vista Tree casos -->
@@ -135,7 +135,7 @@
 		</record>
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="casos_submenu_menu" name="Casos" parent="casos_menu"
+		<menuitem id="casos_submenu_menu" name="Casos" parent="abogados_menu"
 			action="action_casos_tree_view" />
 			
 			
@@ -187,7 +187,7 @@
 		
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="clientes_submenu_menu" name="Clientes" parent="clientes_menu"
+		<menuitem id="clientes_submenu_menu" name="Clientes" parent="abogados_menu"
 			action="action_clientes_tree_view" />
 
 
@@ -238,7 +238,7 @@
 		
 
 		<!-- Diseño de los submenus -->
-		<menuitem id="clientes_submenu_menu" name="Gastos" parent="gastos_menu"
+		<menuitem id="gastos_submenu_menu" name="Gastos" parent="abogados_menu"
 			action="action_gastos_tree_view" />
 
 	</data>
