@@ -259,7 +259,7 @@
 		</record>
 
 		<!-- Diseño de un action - ctrl + space: view_action -->
-		<record model="ir.actions.act_window" id="asignatura_alumno_tree_view">
+		<record model="ir.actions.act_window" id="action_asignatura_tree_view">
 			<field name="name">asignatura.ce</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">asignatura.ce</field>
