@@ -3,58 +3,53 @@
 
 	<data>
 		<!-- Menú principal de managing -->
-		<menuitem id="abogados_menu" name="abogados" />
+		<menuitem id="cebanc_menu" name="cebanc" />
 
 		<!-- Vista Tree -->
-		<record model="ir.ui.view" id="visitas_tree_view">
-			<field name="name">visitas.ab.tree</field>
-			<field name="model">visitas.ab</field>
+		<record model="ir.ui.view" id="grupo_tree_view">
+			<field name="name">grupo.ce.tree</field>
+			<field name="model">grupo.ce</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Visitas">
+				<tree string="Grupos">
 					<field name="codigo" />
-					<field name="fecha_hora" />
-					<field name="estado" />
-					<field name="duracion" />
-					<field name="caso" />
-					<field name="descripcion" />
-					<field name="situacion" />
-
+					<field name="nombre" />
+					<field name="aula" />
+					<field name="tutor" />
+					<field name="alumnos" />
 				</tree>
 			</field>
 		</record>
 
 		<!-- Vista Form -->
-		<record model="ir.ui.view" id="visitas_form_view">
-			<field name="name">visitas.ab.form</field>
-			<field name="model">visitas.ab</field>
+		<record model="ir.ui.view" id="grupo_form_view">
+			<field name="name">grupo.ce.form</field>
+			<field name="model">grupo.ce</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Una nueva visita">
-					<field name="codigo"/>
-					<field name="fecha_hora" />
-					<field name="estado" />
-					<field name="caso" />
-					<field name="duracion" />
-					<field name="descripcion" />
-					<field name="situacion" />
+				<form string="Grupos">
+					<field name="codigo" />
+					<field name="nombre" />
+					<field name="aula" />
+					<field name="tutor" />
+					<field name="alumnos" colspan="4"/>
 				</form>
 			</field>
 		</record>
 
 		<!-- Diseño de un action - ctrl + space: view_action -->
-		<record model="ir.actions.act_window" id="action_visitas_tree_view">
-			<field name="name">visitas.ab</field>
+		<record model="ir.actions.act_window" id="action_grupo_tree_view">
+			<field name="name">grupo.ce</field>
 			<field name="type">ir.actions.act_window</field>
-			<field name="res_model">visitas.ab</field>
+			<field name="res_model">grupo.ce</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="view_id" ref="visitas_tree_view" />
+			<field name="view_id" ref="grupo_tree_view" />
 		</record>
 
 		<!-- Vista Search -->
 
-		<record id="visitas_search_view" model="ir.ui.view">
+		<!--<record id="visitas_search_view" model="ir.ui.view">
 			<field name="name">visitas.ab.search</field>
 			<field name="model">visitas.ab</field>
 			<field name="type">search</field>
@@ -67,20 +62,240 @@
 					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
 						help="Open" />
 
-					<!-- <group expand="0" string="Agrupado Por...">
+					<group expand="0" string="Agrupado Por...">
 						<filter string="Sistema Operativo" domain="[]"
 							context="{'group_by':'so'}" />
 						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
 						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
-					</group>-->
+					</group>
 				</search>
+			</field>
+		</record>-->
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="grupo_submenu_menu" name="Grupos" parent="cebanc_menu"
+			action="action_grupo_tree_view" />
+			
+		<!-- Vista Tree -->
+		<record model="ir.ui.view" id="profesor_tree_view">
+			<field name="name">profesor.ce.tree</field>
+			<field name="model">profesor.ce</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Profesores">
+					<field name="dni" />
+					<field name="nombre" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="tutor_de" />
+					<field name="asignaturas" />
+					<field name="entrevista_a"/>
+				</tree>
 			</field>
 		</record>
 
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="profesor_form_view">
+			<field name="name">profesor.ce.form</field>
+			<field name="model">profesor.ce</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Profesores">
+					<field name="dni" />
+					<field name="nombre" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="tutor_de" />
+					<field name="asignaturas" colspan="4"/>
+					<field name="entrevista_a" colspan="4"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_profesor_tree_view">
+			<field name="name">profesor.ce</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">profesor.ce</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="profesor_tree_view" />
+		</record>
+
+		<!-- Vista Search -->
+
+		<!--<record id="visitas_search_view" model="ir.ui.view">
+			<field name="name">visitas.ab.search</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Programadas" name="filter_programada" domain="[('estado','=','1')]"
+						help="Open" />
+					<filter string="Realizadas" name="filter_realizada" domain="[('estado','!=','2')]"
+						help="Open" />
+					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
+						help="Open" />
+
+					<group expand="0" string="Agrupado Por...">
+						<filter string="Sistema Operativo" domain="[]"
+							context="{'group_by':'so'}" />
+						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
+						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
+					</group>
+				</search>
+			</field>
+		</record>-->
+
 		<!-- Diseño de los submenus -->
-		<menuitem id="visitas_submenu_menu" name="Visitas" parent="abogados_menu"
-			action="action_visitas_tree_view" />
+		<menuitem id="profesor_submenu_menu" name="Profesores" parent="cebanc_menu"
+			action="action_profesor_tree_view" />
 			
+		<!-- Vista Tree -->
+		<record model="ir.ui.view" id="alumno_tree_view">
+			<field name="name">alumno.ce.tree</field>
+			<field name="model">alumno.ce</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Alumnos">
+					<field name="dni" />
+					<field name="nombre" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="fecha_nac" />
+					<field name="grupo"/>
+					<field name="asignaturas" />
+					<field name="entrevista_con" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="alumno_form_view">
+			<field name="name">alumno.ce.form</field>
+			<field name="model">alumno.ce</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Alumnos">
+					<field name="dni" />
+					<field name="nombre" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="fecha_nac" />
+					<field name="grupo"/>
+					<field name="asignaturas" colspan="4"/>
+					<field name="entrevista_con" colspan="4"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="action_alumno_tree_view">
+			<field name="name">alumno.ce</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">alumno.ce</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="alumno_tree_view" />
+		</record>
+
+		<!-- Vista Search -->
+
+		<!--<record id="visitas_search_view" model="ir.ui.view">
+			<field name="name">visitas.ab.search</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Programadas" name="filter_programada" domain="[('estado','=','1')]"
+						help="Open" />
+					<filter string="Realizadas" name="filter_realizada" domain="[('estado','!=','2')]"
+						help="Open" />
+					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
+						help="Open" />
+
+					<group expand="0" string="Agrupado Por...">
+						<filter string="Sistema Operativo" domain="[]"
+							context="{'group_by':'so'}" />
+						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
+						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
+					</group>
+				</search>
+			</field>
+		</record>-->
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="alumno_submenu_menu" name="Alumnos" parent="cebanc_menu"
+			action="action_alumno_tree_view" />
+			
+			<!-- Vista Tree -->
+		<record model="ir.ui.view" id="asignatura_tree_view">
+			<field name="name">asignatura.ce.tree</field>
+			<field name="model">asignatura.ce</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Asignaturas">
+					<field name="codigo" />
+					<field name="nombre" />
+					<field name="profesor" />
+					<field name="alumnos" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Vista Form -->
+		<record model="ir.ui.view" id="asignatura_form_view">
+			<field name="name">asignatura.ce.form</field>
+			<field name="model">asignatura.ce</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Asignaturas">
+					<field name="codigo" />
+					<field name="nombre" />
+					<field name="profesor" />
+					<field name="alumnos" colspan="4"/>
+				</form>
+			</field>
+		</record>
+
+		<!-- Diseño de un action - ctrl + space: view_action -->
+		<record model="ir.actions.act_window" id="asignatura_alumno_tree_view">
+			<field name="name">asignatura.ce</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">asignatura.ce</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="asignatura_tree_view" />
+		</record>
+
+		<!-- Vista Search -->
+
+		<!--<record id="visitas_search_view" model="ir.ui.view">
+			<field name="name">visitas.ab.search</field>
+			<field name="model">visitas.ab</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Estado">
+					<filter string="Programadas" name="filter_programada" domain="[('estado','=','1')]"
+						help="Open" />
+					<filter string="Realizadas" name="filter_realizada" domain="[('estado','!=','2')]"
+						help="Open" />
+					<filter string="Anuladas" name="filter_anulada" domain="[('estado','!=','3')]"
+						help="Open" />
+
+					<group expand="0" string="Agrupado Por...">
+						<filter string="Sistema Operativo" domain="[]"
+							context="{'group_by':'so'}" />
+						<filter string="Disco Duro" domain="[]" context="{'group_by':'hd'}" />
+						<filter string="Memoria RAM" domain="[]" context="{'group_by':'ram'}" />
+					</group>
+				</search>
+			</field>
+		</record>-->
+
+		<!-- Diseño de los submenus -->
+		<menuitem id="asignatura_submenu_menu" name="Asignaturas" parent="cebanc_menu"
+			action="action_asignatura_tree_view" />
 	
 	</data>
 
