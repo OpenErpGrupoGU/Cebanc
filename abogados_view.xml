@@ -190,7 +190,7 @@
 		<menuitem id="clientes_submenu_menu" name="Clientes" parent="clientes_menu"
 			action="action_clientes_tree_view" />
 
-	</data>
+
 	
 	<!-- Vista Tree clientes -->
 		<record model="ir.ui.view" id="gastos_tree_view">
