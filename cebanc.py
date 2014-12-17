@@ -46,7 +46,7 @@ class profesor_ce(osv.osv):
     _columns = {
             'dni':fields.char('DNI', size = 20, required = True, readonly = False),
             'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
-            'apellido':fields.char('Primer apellido', size = 30, required = True, readonly = False),
+            'apellido1':fields.char('Primer apellido', size = 30, required = True, readonly = False),
             'apellido2':fields.char('Segundo apellido', size = 30, required = True, readonly = False),
             'aula':fields.char('Aula', size = 10, required = True, readonly = False),
             'tutor_de':fields.many2one('grupo.ce','Tutor de'),
@@ -78,7 +78,7 @@ class alumno_ce(osv.osv):
     _columns = {
             'dni':fields.char('DNI', size = 20, required = True, readonly = False),
             'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
-            'apellido':fields.char('Primer apellido', size = 30, required = True, readonly = False),
+            'apellido1':fields.char('Primer apellido', size = 30, required = True, readonly = False),
             'apellido2':fields.char('Segundo apellido', size = 30, required = True, readonly = False),
             'fecha_nac': fields.date('Fecha de nacimiento', required = True, readonly = False),
             'grupo':fields.many2one('grupo.ce','Grupo'),
