@@ -23,23 +23,66 @@
 from osv import osv
 from osv import fields
 
-class visitas_ab(osv.osv):
+class grupo_ce(osv.osv):
 
-    _name = 'visitas.ab'
-    _description = 'visitas.ab'
+    _name = 'grupo.ce'
+    _description = 'grupo.ce'
     _rec_name='codigo'
     _columns = {
             'codigo':fields.char('Código', size = 20, required = True, readonly = False),
-            'fecha_hora':fields.datetime('Fecha/Hora', required = True, readonly = False),
-            'estado':fields.selection([
-                ('1','Programada'),
-                ('2','Realizada'),
-                ('3','Anulada'),
-                 ],'Estado', select = False, readonly = False),
-            'duracion':fields.char('Duración', size = 30, required = True, readonly = False),
-            'caso':fields.many2one('casos.ab','Caso'),
-            'descripcion':fields.char('Descripción', size = 40, required = True, readonly = False),
-            'situacion':fields.char('Situación', size = 60, required = True, readonly = False),
+            'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
+            'aula':fields.char('Aula', size = 30, required = True, readonly = False),
+            'tutor':fields.many2one('profesor.ce','Tutor'),
+            'alumnos':fields.one2many('alumno.ce', 'grupo', 'Alumno', readonly=False),
         
         }
-visitas_ab()
+grupo_ce()
+
+class profesor_ce(osv.osv):
+
+    _name = 'profesor.ce'
+    _description = 'profesor.ce'
+    _rec_name='dni'
+    _columns = {
+            'dni':fields.char('DNI', size = 20, required = True, readonly = False),
+            'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
+            'apellido':fields.char('Primer apellido', size = 30, required = True, readonly = False),
+            'apellido2':fields.char('Segundo apellido', size = 30, required = True, readonly = False),
+            'aula':fields.char('Aula', size = 10, required = True, readonly = False),
+            'tutor_de':fields.many2one('grupo.ce','Tutor de'),
+            'asignaturas':fields.one2many('asignatura.ce', 'profesor', 'Asignaturas', readonly=False),
+            'entrevista_a':fields.many2many('alumno.ce', 'entrevista_al_pr', 'dni_profesor', 'dni_alumno', 'Entrevista a'),
+        
+        }
+profesor_ce()
+
+class asignatura_ce(osv.osv):
+
+    _name = 'asignatura.ce'
+    _description = 'asignatura.ce'
+    _rec_name='codigo'
+    _columns = {
+            'codigo':fields.char('Código', size = 20, required = True, readonly = False),
+            'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
+            'profesor':fields.many2one('profesor.ce','Profesor de'),
+            'alumnos':fields.many2many('alumno.ce', 'asignatura_alumnos', 'codigo_asignatura', 'dni_alumno', 'Lo atienten'),
+        
+        }
+asignatura_ce()
+
+class alumno_ce(osv.osv):
+
+    _name = 'alumno.ce'
+    _description = 'alumno.ce'
+    _rec_name='dni'
+    _columns = {
+            'dni':fields.char('DNI', size = 20, required = True, readonly = False),
+            'nombre':fields.char('Nombre', size = 30, required = True, readonly = False),
+            'apellido':fields.char('Primer apellido', size = 30, required = True, readonly = False),
+            'apellido2':fields.char('Segundo apellido', size = 30, required = True, readonly = False),
+            'fecha_nac': fields.date('Fecha de nacimiento', required = True, readonly = False),
+            'grupo':fields.many2one('grupo.ce','Grupo'),
+            'asignaturas':fields.many2many('asignatura.ce', 'asignatura_alumnos', 'dni_alumno', 'codigo_asignatura', 'Atiende a'),
+            'entrevista_con':fields.many2many('profesor.ce', 'entrevista_al_pr', 'dni_alumno', 'dni_profesor', 'Entrevista con        '),        
+        }
+alumno_ce()
